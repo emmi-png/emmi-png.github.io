@@ -116,28 +116,50 @@ body {
 
 /* Tiny external link button */
 .external-link {
-    position: absolute;
+    /* Pin to viewport bottom-right so it remains visible after deployment transforms */
+    position: fixed;
     right: 18px;
     bottom: 18px;
-    z-index: 5;
+    z-index: 9999;
+    pointer-events: auto;
 }
 
 .tiny-external-btn {
     display: inline-block;
     font-size: 0.8rem;
     padding: 6px 10px;
-    background: transparent;
-    color: #cbd5e1;
-    border: 1px solid rgba(203, 213, 225, 0.12);
+    background: transparent !important;
+    color: #cbd5e1 !important;
+    border: 1px solid rgba(203, 213, 225, 0.12) !important;
     border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.2s ease;
+    text-decoration: none !important; /* prevent default underline */
+    -webkit-text-decoration-skip: none;
+    transition: all 0.16s ease;
 }
 
-.tiny-external-btn:hover {
-    background: rgba(255,255,255,0.06);
-    color: #ffffff;
+.tiny-external-btn:hover,
+.tiny-external-btn:focus {
+    background: rgba(255,255,255,0.06) !important;
+    color: #ffffff !important;
     transform: translateY(-2px);
+    outline: none;
+}
+
+/* Make sure anchor doesn't use the browser's default link color after deployment */
+.tiny-external-btn:link,
+.tiny-external-btn:visited {
+    color: #cbd5e1 !important;
+}
+
+@media (max-width: 480px) {
+    .external-link {
+        right: 12px;
+        bottom: 12px;
+    }
+    .tiny-external-btn {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
 }
 
 .credits {
