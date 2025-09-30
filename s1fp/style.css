@@ -1,0 +1,293 @@
+/* Import IBM Plex Sans Mono font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Mono:wght@400;700&display=swap');
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IBM Plex Sans Mono', monospace;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Screen management */
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Cosmic background */
+.cosmic-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #100F1F;
+    z-index: -1;
+}
+
+.stars {
+    display: none;
+}
+
+.planets {
+    display: none;
+}
+
+
+
+/* Start Screen Styles */
+.start-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.logo-placeholder {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.cover-image {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.subtitle {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    margin-bottom: 60px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.start-button {
+    background: #282734;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-family: 'IBM Plex Sans Mono', monospace;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-bottom: 60px;
+    box-shadow: 0 10px 30px rgba(40, 39, 52, 0.3);
+}
+
+.start-button:hover {
+    transform: translateY(-2px);
+    background: white;
+    color: #282734;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+}
+
+.credits {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+/* Choice Screen Styles */
+.choice-content {
+    z-index: 2;
+    max-width: 1000px;
+    padding: 20px;
+    width: 100%;
+}
+
+.story-text {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.story-text p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.choices-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.choice-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.choice-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.choice-box:hover::before {
+    left: 100%;
+}
+
+.choice-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
+}
+
+.choice-image {
+    width: 100%;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.choice-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.choice-text {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+}
+
+/* Ending Screen Styles */
+.ending-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.ending-text {
+    margin-bottom: 60px;
+}
+
+.ending-text h2 {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.ending-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+.restart-button {
+    background: #282734;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-family: 'IBM Plex Sans Mono', monospace;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(40, 39, 52, 0.3);
+}
+
+.restart-button:hover {
+    transform: translateY(-2px);
+    background: white;
+    color: #282734;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .choices-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .choice-box {
+        width: 280px;
+    }
+    
+    .story-text p {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+    
+    .ending-text h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .choice-box {
+        width: 100%;
+        max-width: 280px;
+    }
+}
