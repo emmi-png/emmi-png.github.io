@@ -114,6 +114,32 @@ body {
     box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
 }
 
+/* Tiny external link button */
+.external-link {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: 5;
+}
+
+.tiny-external-btn {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid rgba(203, 213, 225, 0.12);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.tiny-external-btn:hover {
+    background: rgba(255,255,255,0.06);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
 .credits {
     font-size: 0.8rem;
     opacity: 0.6;
