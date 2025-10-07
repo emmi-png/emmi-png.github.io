@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night Path - A Choose Your Own Adventure</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+        <div class="cosmic-background">
+            <div class="stars"></div>
+            <div class="planets"></div>
+        </div>
+        <div class="start-content">
+            <div class="logo-section">
+                <div class="logo-placeholder">
+                    <img src="images/cover.png" alt="Night Path Logo" class="cover-image">
+                </div>
+                <h1 class="game-title">A Night Path</h1>
+                <p class="subtitle">WHAT TYPE OF ADVENTURE AWAITS YOU?</p>
+            </div>
+            <button id="start-btn" class="start-button">
+                BEGIN THE JOURNEY →
+            </button>
+            <div class="credits">
+                <p>CREATED BY EMMI WU</p>
+            </div>
+        </div>
+        <div class="external-link">
+            <a class="tiny-external-btn" href="https://clew2027.github.io/" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; text-decoration: none; background: transparent;">my buddy's work ➤</a>
+        </div>
+    </div>
+
+    <!-- Choice Screen -->
+    <div id="choice-screen" class="screen">
+        <div class="cosmic-background">
+            <div class="stars"></div>
+            <div class="planets"></div>
+        </div>
+        <div class="choice-content">
+            <div class="story-text">
+                <p id="story-context">You find yourself beneath trees of the Forest of Whispers. They say anyone who dares to enter must face choices that change their fate forever.</p>
+            </div>
+            <div class="choices-container">
+                <div class="choice-box" id="choice-1">
+                    <div class="choice-image">
+                        <img src="images/1a.png" alt="Choice 1" id="choice-1-img">
+                    </div>
+                    <div class="choice-text" id="choice-1-text">Go down the path less traveled</div>
+                </div>
+                <div class="choice-box" id="choice-2">
+                    <div class="choice-image">
+                        <img src="images/1b.png" alt="Choice 2" id="choice-2-img">
+                    </div>
+                    <div class="choice-text" id="choice-2-text">Go down the path less traveled</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ending Screen -->
+    <div id="ending-screen" class="screen">
+        <div class="cosmic-background">
+            <div class="stars"></div>
+            <div class="planets"></div>
+        </div>
+        <div class="ending-content">
+            <div class="ending-text">
+                <h2 id="ending-title">Your Journey Ends</h2>
+                <p id="ending-description">Your choices have led you to this moment. The path you walked tells the story of who you truly are.</p>
+            </div>
+            <div class="ending-actions">
+                <button id="restart-btn" class="restart-button">BEGIN A NEW JOURNEY</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
