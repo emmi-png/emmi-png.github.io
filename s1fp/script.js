@@ -310,18 +310,4 @@ function createPlaceholderImage(width = 300, height = 200, color = '#667eea', te
     return canvas.toDataURL();
 }
 
-// Create placeholder images when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    // Create different colored placeholders
-    const placeholders = [
-        { id: 'choice-1-img', color: '#667eea', text: 'Path Less Traveled' },
-        { id: 'choice-2-img', color: '#764ba2', text: 'Well-Worn Trail' }
-    ];
-
-    placeholders.forEach(placeholder => {
-        const img = document.getElementById(placeholder.id);
-        if (img) {
-            img.src = createPlaceholderImage(300, 200, placeholder.color, placeholder.text);
-        }
-    });
-});
+// Placeholder images removed so actual image files are used after deployment
