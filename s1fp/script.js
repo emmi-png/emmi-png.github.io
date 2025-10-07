@@ -11,12 +11,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Follow the mossy path",
-                            image: "s1fp/images/1a.png",
+                            image: "images/1a.png",
                             nextChapter: 2
                         },
                         {
                             text: "Approach the glowing pond",
-                            image: "s1fp/images/1b.png",
+                            image: "images/1b.png",
                             nextChapter: 3
                         }
                     ]
@@ -27,12 +27,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Climb the stone staircase",
-                            image: "s1fp/images/2a.png",
+                            image: "images/2a.png",
                             nextChapter: 4
                         },
                         {
                             text: "Explore the cave entrance",
-                            image: "s1fp/images/2b.png",
+                            image: "images/2b.png",
                             nextChapter: 5
                         }
                     ]
@@ -43,12 +43,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Approach the glowing pond",
-                            image: "s1fp/images/2c.png",
+                            image: "images/2c.png",
                             nextChapter: 6
                         },
                         {
                             text: "Ignore the pond, keep walking",
-                            image: "s1fp/images/2d.png",
+                            image: "images/2d.png",
                             nextChapter: 7
                         }
                     ]
@@ -59,12 +59,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Light the carved torch",
-                            image: "s1fp/images/3a.png",
+                            image: "images/3a.png",
                             nextChapter: 'ending-guardian'
                         },
                         {
                             text: "Leave the torch unlit",
-                            image: "s1fp/images/3b.png",
+                            image: "images/3b.png",
                             nextChapter: 'ending-monarch'
                         }
                     ]
@@ -75,12 +75,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Speak to the echoing voice",
-                            image: "s1fp/images/3c.png",
+                            image: "images/3c.png",
                             nextChapter: 'ending-elemental'
                         },
                         {
                             text: "Stay silent",
-                            image: "s1fp/images/3d.png",
+                            image: "images/3d.png",
                             nextChapter: 'ending-consumed'
                         }
                     ]
@@ -91,12 +91,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Touch the water",
-                            image: "s1fp/images/3e.png",
+                            image: "images/3e.png",
                             nextChapter: 'ending-reversed'
                         },
                         {
                             text: "Wait by the water",
-                            image: "s1fp/images/3f.png",
+                            image: "images/3f.png",
                             nextChapter: 'ending-peaceful'
                         }
                     ]
@@ -107,12 +107,12 @@ class NightPathGame {
                     choices: [
                         {
                             text: "Enter the abandoned hut",
-                            image: "s1fp/images/3g.png",
+                            image: "images/3g.png",
                             nextChapter: 'ending-keeper'
                         },
                         {
                             text: "Pass by the hut",
-                            image: "s1fp/images/3h.png",
+                            image: "images/3h.png",
                             nextChapter: 'ending-dream'
                         }
                     ]
