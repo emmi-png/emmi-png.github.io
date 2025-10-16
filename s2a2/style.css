@@ -95,13 +95,110 @@
 /* player overlay */
 .player-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:80;transition:opacity .24s ease}
 .player-overlay.active{display:flex;opacity:1}
-.player-card{background:var(--bg);padding:36px;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,0.6);max-width:760px;width:92%;display:flex;flex-direction:column;align-items:center;transform:translateY(8px);transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .2s}
+.player-card{display:flex;align-items:center;justify-content:space-between;background:var(--bg);padding:16px 24px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.4);max-width:760px;width:92%;flex-direction:column;align-items:center;transform:translateY(8px);transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .2s}
 .player-overlay.active .player-card{transform:translateY(0)}
 .player-disc{width:340px;height:340px;border-radius:50%;overflow:hidden;margin-bottom:26px;box-shadow:0 12px 40px rgba(0,0,0,.6);border:1px solid rgba(245,245,245,0.04)}
 .player-controls{display:flex;align-items:center;gap:18px}
 .player-toggle{background:transparent;border:1px solid rgba(245,245,245,0.08);color:var(--accent);padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:500}
 .player-toggle.playing{background:rgba(245,245,245,0.06)}
 .player-close{position:absolute;top:18px;right:18px;color:var(--muted);background:transparent;border:none;font-size:20px;cursor:pointer}
+
+/* Update player card styling */
+.player-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.player-card .bar-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.player-card .bar-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-card .bar-title {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.player-card .bar-artist {
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.player-card .bar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-controls .control-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 20px;
+  transition: color 0.18s ease;
+}
+
+.bar-controls .control-icon:hover {
+  color: var(--accent);
+}
+
+/* Remove the random icon on the right */
+.bar-controls .bar-external {
+  display: none;
+}
+
+/* Ensure the pause icon toggles to play */
+.bar-toggle {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 20px;
+  cursor: pointer;
+}
+.bar-toggle.playing {
+  content: 'Pause';
+}
+.bar-toggle:not(.playing) {
+  content: 'Play';
+}
+
+/* Ensure the play icon toggles to pause */
+.play-icon {
+  display: block;
+}
+.play-icon.active {
+  display: none;
+}
+
+.pause-icon {
+  display: none;
+}
+.pause-icon.active {
+  display: block;
+}
 
 /* dim the page content while player is open */
 body.player-open .wrap{opacity:.18;pointer-events:none;transition:opacity .22s ease}
@@ -296,13 +393,12 @@ body.player-open .album{opacity:.38;transform:scale(.98);transition:opacity .18s
   color: var(--accent);
 }
 
-.pause-icon{
+.play-icon{
   font-size: 12px;
 }
 
-.external-icon{
-  font-size: 14px;
-  transform: rotate(45deg);
+.pause-icon{
+  font-size: 12px;
 }
 
 /* When only the record should be visible, hide surrounding UI */

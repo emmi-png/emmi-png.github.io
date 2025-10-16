@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
   let focusedPlayer = null;
 
-  function createFocusedPlayer(imgSrc, audioSrc){
+  function createFocusedPlayer(recordImgSrc, audioSrc, songArtSrc){
     // remove existing
     removeFocusedPlayer();
 
@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const discWrap = document.createElement('div');
     discWrap.className = 'player-disc';
     const img = document.createElement('img');
-    img.src = imgSrc;
+    img.src = recordImgSrc;
     img.style.width = '100%';
     img.style.height = '100%';
     img.style.objectFit = 'cover';
+    img.style.borderRadius = '50%';
     discWrap.appendChild(img);
-    // Don't auto-spin - only spin when playing
-    // discWrap.classList.add('spin');
+    discWrap.classList.add('spin');
     
     // Create tonearm and base elements with proper grouping
     const tonearmContainer = document.createElement('div');
@@ -42,15 +42,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const tonearmImg = document.createElement('img');
     tonearmImg.src = 'tonearm.png';
     tonearmImg.alt = 'Tonearm';
-    tonearmImg.onerror = function() {
-      console.log('Tonearm image failed to load');
-      // Add a fallback background color if image fails
-      tonearm.style.background = 'rgba(200, 200, 200, 0.8)';
-      tonearm.style.border = '1px solid #ccc';
-    };
-    tonearmImg.onload = function() {
-      console.log('Tonearm image loaded successfully');
-    };
     tonearm.appendChild(tonearmImg);
     tonearm.style.transformOrigin = '50% 5%'; 
     
@@ -68,13 +59,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const songInfoBlock = document.createElement('div');
   songInfoBlock.className = 'song-info-block';
   
-  // Album art thumbnail (left side)
-  const albumArt = document.createElement('div');
-  albumArt.className = 'song-album-art';
-  const thumbnail = document.createElement('img');
-  thumbnail.src = imgSrc;
-  thumbnail.alt = 'Album art';
-  albumArt.appendChild(thumbnail);
+  // Song art (left side)
+  const songArt = document.createElement('div');
+  songArt.className = 'song-art';
+  const songThumbnail = document.createElement('img');
+  songThumbnail.src = songArtSrc;
+  songThumbnail.alt = 'Song art';
+  songThumbnail.style.width = '48px';
+  songThumbnail.style.height = '48px';
+  songThumbnail.style.objectFit = 'cover';
+  songThumbnail.style.borderRadius = '4px';
+  songArt.appendChild(songThumbnail);
   
   // Song details (middle)
   const songDetails = document.createElement('div');
@@ -95,16 +90,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
   pauseIcon.className = 'control-icon pause-icon';
   pauseIcon.innerHTML = '⏸';
   
-  // External link icon
-  const externalIcon = document.createElement('div');
-  externalIcon.className = 'control-icon external-icon';
-  externalIcon.innerHTML = '⧉';
-  
   controlIcons.appendChild(pauseIcon);
-  controlIcons.appendChild(externalIcon);
   
   // Assemble the song info block
-  songInfoBlock.appendChild(albumArt);
+  songInfoBlock.appendChild(songArt);
   songInfoBlock.appendChild(songDetails);
   songInfoBlock.appendChild(controlIcons);
 
@@ -213,21 +202,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.album').forEach(album =>{
     const sleeve = album.querySelector('.sleeve img');
     const audio = album.dataset.audio; // path
+    const recordImages = {
+      "DON'T TAKE THE MONEY": 'record2.png',
+      'YOU-HAHAHA': 'record3.png',
+      'KYOTO': 'record1.png',
+    };
+    const songImages = {
+      "DON'T TAKE THE MONEY": 'song2.jpg',
+      'YOU-HAHAHA': 'song3.png',
+      'KYOTO': 'song1.jpg',
+    };
+
     if(audio){
       album.addEventListener('click', (e)=>{
         // avoid reacting to clicks on interactive elements inside if any
         if(e.target.closest('.player-controls')) return;
-        // determine which image to use: if the click was on the record, prefer the record image
-        const recordImgEl = e.target.closest('.record') ? e.target.closest('.record').querySelector('img') : null;
-        const chosenImgSrc = recordImgEl && recordImgEl.src ? recordImgEl.src : sleeve.src;
+        const recordImgSrc = recordImages[album.dataset.trackTitle] || sleeve.src;
+        const songArtSrc = songImages[album.dataset.trackTitle] || sleeve.src;
 
         // if already focused on this album/image, close
-        if(focusedPlayer && focusedPlayer.querySelector('img') && focusedPlayer.querySelector('img').src === chosenImgSrc){
+        if(focusedPlayer && focusedPlayer.querySelector('img') && focusedPlayer.querySelector('img').src === recordImgSrc){
           removeFocusedPlayer();
           return;
         }
         removeFocusedPlayer();
-        const player = createFocusedPlayer(chosenImgSrc, audio);
+        const player = createFocusedPlayer(recordImgSrc, audio, songArtSrc);
         // set metadata if present
         const title = album.dataset.trackTitle || '';
         const artist = album.dataset.trackArtist || '';
@@ -267,4 +266,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
       removeFocusedPlayer();
     }
   });
+
+  // Update the player bar thumbnail dynamically
+  const updatePlayerBarThumbnail = () => {
+    const thumbImg = document.querySelector('.bar-thumb img');
+    const currentTitle = document.querySelector('.bar-title')?.textContent;
+
+    if (thumbImg && currentTitle) {
+      const albumImages = {
+        "DON'T TAKE THE MONEY": 'song2.jpg',
+        'HAHAHA': 'song3.png',
+        'KYOTO': 'song1.jpg'
+      };
+
+      if (albumImages[currentTitle]) {
+        thumbImg.src = albumImages[currentTitle];
+      }
+    }
+  };
+
+  // Call the function whenever the player bar title changes
+  const observer = new MutationObserver(() => {
+    updatePlayerBarThumbnail();
+  });
+
+  const barTitleElement = document.querySelector('.bar-title');
+  if (barTitleElement) {
+    observer.observe(barTitleElement, { childList: true });
+  }
 });
