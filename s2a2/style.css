@@ -1,0 +1,330 @@
+:root{
+  --bg:#121212;
+  --muted:#6b6b6b;
+  --accent:#f5f5f5;
+}
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500;700&family=DM+Sans:wght@400;500&display=swap');
+*{box-sizing:border-box}
+.body, body{font-family: 'DM Mono', monospace;background:var(--bg);color:var(--accent);margin:0;font-weight:500}
+.site-header{position:fixed;left:0;right:0;top:0;height:56px;background:var(--bg);border-bottom:2px solid rgba(245,245,245,0.06);z-index:40}
+.site-header .header-inner{width:100%;max-width:none;margin:0;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(6px,1.5vw,12px);font-family:'DM Mono',monospace;font-size:14px;font-weight:500}
+.body, body{font-family: 'DM Mono', monospace;background:var(--bg);color:var(--accent);margin:0;font-weight:500;letter-spacing:0.005em}
+.site-header .header-inner{width:100%;max-width:none;margin:0;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(6px,1.5vw,12px);font-family:'DM Mono',monospace;font-size:14px;font-weight:500}
+.site-title{font-size:14px;letter-spacing:0.005em;color:var(--accent)}
+.site-title a{color:var(--muted);text-decoration:none;transition:color .18s ease,opacity .18s ease;opacity:0.98}
+.site-title a:hover,.site-title a:focus{color:var(--accent);opacity:1;outline:none}
+.site-nav a{color:var(--muted);text-decoration:none;font-size:14px}
+/* link styles for footer/header to match muted look */
+.site-nav a,
+.site-footer .footer-inner .follow a,
+.site-footer .footer-inner .credit a{
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .18s ease,opacity .18s ease;
+  opacity:0.98;
+}
+.site-nav a:hover,.site-nav a:focus,
+.site-footer .footer-inner .follow a:hover,.site-footer .footer-inner .follow a:focus,
+.site-footer .footer-inner .credit a:hover,.site-footer .footer-inner .credit a:focus{
+  color:var(--accent);
+  opacity:1;
+  outline: none;
+}
+
+.wrap{padding:110px 24px 100px;min-height:100vh;display:flex;flex-direction:column}
+.title{max-width:1100px;margin:0 auto 84px;text-align:center;font-size:16px}
+.grid{display:flex;gap:64px;justify-content:center;align-items:flex-end;max-width:1100px;margin:0 auto}
+.album{width:250px;height:250px;position:relative;display:flex;align-items:flex-end;justify-content:center}
+.sleeve{width:225px;height:225px;background:#eee;border-radius:2px;box-shadow:0 10px 30px rgba(0,0,0,.6);overflow:hidden;transform:translateY(0);transition:transform .28s cubic-bezier(.2,.9,.2,1);position:relative;z-index:3}
+.album:hover .sleeve{transform:translateY(-22.5px)}
+.sleeve img{width:100%;height:100%;object-fit:cover;display:block}
+/* make albums clickable */
+.album{cursor:pointer}
+.record{cursor:pointer}
+
+/* record */
+.record{position:absolute;left:50%;top:40%;width:175px;height:175px;transform:translate(-50%, -50%) scale(.6);opacity:0;transition:transform .28s ease,opacity .28s ease;z-index:1}
+.record .disc{width:100%;height:100%;border-radius:50%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.record .disc img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
+.record .disc::after{display:none}
+.record .label{display:none}
+.album:hover .record{opacity:1;transform:translate(-50%,-110%) scale(1);}
+
+/* spin animation */
+.spin{animation:spin 12s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+@media (prefers-reduced-motion: reduce){
+  .spin{animation: none !important}
+}
+
+/* footer */
+.site-footer{position:fixed;left:0;right:0;bottom:0;height:60px;border-top:2px solid rgba(245,245,245,0.05);background:var(--bg);}
+.site-footer .footer-inner{width:100%;max-width:none;margin:0;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(6px,1.5vw,12px);color:var(--muted);font-family:'DM Mono',monospace;font-size:14px;font-weight:500}
+
+/* small screen */
+@media (max-width:600px){
+  .grid{gap:28px}
+  .album{width:175px;height:175px}
+  .sleeve{width:150px;height:150px}
+  .record{width:125px;height:125px}
+  .title{margin:0 auto 40px}
+}
+
+/* Extra small screens: make padding very tight */
+@media (max-width:420px){
+  .site-header .header-inner,
+  .site-footer .footer-inner{padding:0 8px}
+}
+
+/* About page */
+.about{display:grid;grid-template-columns:360px 1fr;gap:64px;align-items:start;max-width:1100px;margin:0 auto}
+/* center the about block vertically within the wrap */
+.about-page{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 56px - 60px);padding-top:0;padding-bottom:0}
+.about{align-items:center}
+.about-left .about-image{background:var(--bg);display:block}
+.about-image img{display:block;width:100%;height:auto;border-radius:2px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.about-image figcaption{margin-top:14px;color:var(--muted);font-size:12px;letter-spacing:0.005em;text-transform:uppercase}
+.about-right h3{font-size:14px;letter-spacing:0.005em;color:var(--accent);margin-bottom:18px}
+.about-right p{color:var(--muted);line-height:1.7;max-width:540px;font-family:'DM Sans',system-ui,Arial,Helvetica,sans-serif;font-weight:500}
+
+@media (max-width:900px){
+  .about{grid-template-columns:1fr;gap:40px;padding:0 20px}
+  .about-image img{max-width:420px;margin:0 auto;}
+}
+/* player overlay */
+.player-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:80;transition:opacity .24s ease}
+.player-overlay.active{display:flex;opacity:1}
+.player-card{background:var(--bg);padding:36px;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,0.6);max-width:760px;width:92%;display:flex;flex-direction:column;align-items:center;transform:translateY(8px);transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .2s}
+.player-overlay.active .player-card{transform:translateY(0)}
+.player-disc{width:340px;height:340px;border-radius:50%;overflow:hidden;margin-bottom:26px;box-shadow:0 12px 40px rgba(0,0,0,.6);border:1px solid rgba(245,245,245,0.04)}
+.player-controls{display:flex;align-items:center;gap:18px}
+.player-toggle{background:transparent;border:1px solid rgba(245,245,245,0.08);color:var(--accent);padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:500}
+.player-toggle.playing{background:rgba(245,245,245,0.06)}
+.player-close{position:absolute;top:18px;right:18px;color:var(--muted);background:transparent;border:none;font-size:20px;cursor:pointer}
+
+/* dim the page content while player is open */
+body.player-open .wrap{opacity:.18;pointer-events:none;transition:opacity .22s ease}
+body.player-open .site-header, body.player-open .site-footer{opacity:.6}
+body.player-open .player-overlay{display:flex}
+
+/* slightly fade all albums when player is open */
+body.player-open .album{opacity:.38;transform:scale(.98);transition:opacity .18s,transform .18s}
+
+/* focused inline player (no modal) */
+.focused-player{display:flex;flex-direction:column;align-items:center;gap:28px;max-width:900px;margin:24px auto 48px;}
+.focused-player .player-card{background:transparent;padding:0;border-radius:8px;box-shadow:none;display:flex;flex-direction:column;align-items:center;overflow:visible}
+.focused-player .player-disc{width:360px;height:360px;border-radius:50%;overflow:visible;box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid rgba(245,245,245,0.04)}
+.focused-player .player-controls{display:flex;align-items:center;gap:18px;margin-top:8px}
+.focused-player .player-toggle{background:transparent;border:1px solid rgba(245,245,245,0.08);color:var(--accent);padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:500}
+
+/* fade siblings when focused */
+.album.is-dim{opacity:.18;transform:scale(.98);transition:opacity .18s,transform .18s}
+
+@media (max-width:900px){
+  .focused-player .player-disc{width:260px;height:260px}
+}
+
+/* player metadata */
+.player-info{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:6px}
+.player-title{font-weight:500;color:var(--accent);letter-spacing:0.01em}
+.player-artist{color:var(--muted);font-size:13px}
+
+/* spin animation for focused disc */
+.player-disc.spin{animation:spin 6s linear infinite}
+
+/* Turntable structure - record and tonearm as one unit */
+.player-disc{
+  position: relative;
+  overflow: visible;
+}
+
+/* Tonearm container positioned relative to the player card */
+.tonearm-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Allow pointer events on the tonearm itself */
+.tonearm-container .tonearm{
+  pointer-events: auto;
+}
+
+/* Tonearm group positioned relative to player card */
+.tonearm-group{
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+}
+
+.tonearm-base{
+  position: absolute;
+  top: 28%;
+  left: 130%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  z-index: 12;
+}
+
+.tonearm-base img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tonearm{
+  position: absolute;
+  top: 50%;
+  left: 130%;
+  width: 1200px;
+  height: 240px;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 15;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.tonearm img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block !important;
+  opacity: 1;
+  background: transparent;
+}
+
+/* Tonearm in playing position - moves across the record */
+.tonearm.playing{
+  transform: translate(-50%, -50%) rotate(25deg);
+}
+
+/* Ensure tonearm doesn't interfere with record spinning and allow overflow */
+.player-disc{
+  position: relative;
+  overflow: visible;
+}
+
+/* Song info block styling */
+.song-info-block{
+  background: rgba(245, 245, 245, 0.03);
+  border: 1px solid rgba(245, 245, 245, 0.06);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 320px;
+  backdrop-filter: blur(8px);
+}
+
+.song-album-art{
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.song-album-art img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.song-details{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.song-title{
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.song-artist{
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.song-control-icons{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-icon{
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.18s ease, color 0.18s ease;
+}
+
+.control-icon:hover{
+  opacity: 1;
+  color: var(--accent);
+}
+
+.pause-icon{
+  font-size: 12px;
+}
+
+.external-icon{
+  font-size: 14px;
+  transform: rotate(45deg);
+}
+
+/* When only the record should be visible, hide surrounding UI */
+/* when only-record is active, specific selectors below will hide UI */
+body.only-record .title{
+  /* hide page title to focus only the disc */
+  display:none !important;
+}
+body.only-record .wrap{padding-top:60px}
+/* hide the whole grid and any album details except the currently undimmed album's record */
+body.only-record .grid,
+body.only-record .album .sleeve,
+body.only-record .album .record .label,
+body.only-record .player-info,
+body.only-record .player-controls{
+  display:none !important;
+}
+/* ensure the focused player is centered and visible */
+body.only-record .focused-player{margin:40px auto !important}
+body.only-record .album.is-dim{opacity:0 !important;pointer-events:none}
+
+/* if a specific album is undimmed, its record should be visually hidden (we use the focused-player disc instead) */
+body.only-record .album:not(.is-dim){
+  visibility:hidden;
+}
