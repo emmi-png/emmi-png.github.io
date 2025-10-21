@@ -64,11 +64,26 @@
 
 /* small screen */
 @media (max-width:600px){
-  .grid{gap:28px}
-  .album{width:175px;height:175px}
-  .sleeve{width:150px;height:150px}
-  .record{width:125px;height:125px}
-  .title{margin:0 auto 40px}
+  .grid{
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .album {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .sleeve {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .record {
+    width: 100%;
+    max-width: 200px;
+  }
 }
 
 /* Extra small screens: make padding very tight */
