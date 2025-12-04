@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Generative Shapes Fullscreen</title>
+<style>
+  :root {
+    --ink: #1C1B1F;
+    --paper: #FBF6EF;
+    --accent: #F2511B;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ink);
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: var(--ink);
+    cursor: crosshair;
+  }
+</style>
+</head>
+<body>
+<canvas id="art"></canvas>
+
+<script>
+  const BG = "#1C1B1F";
+  const PAPER = "#FBF6EF";
+  const ACCENT = "#F2511B";
+
+  const canvas = document.getElementById("art");
+  const ctx = canvas.getContext("2d");
+
+  const shapes = [];
+
+  const ShapeType = ["square", "rect", "triangle"];
+  const Patterns = ["accentFill", "paperFill", "outline"];
+
+  function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function randInt(min, maxInclusive) {
+    return Math.floor(rand(min, maxInclusive + 1));
+  }
+
+  function choice(arr) {
+    return arr[randInt(0, arr.length - 1)];
+  }
+
+  function sizeVariant(base) {
+    const r = Math.random();
+    if (r < 0.25) return base * 0.25;
+    if (r < 0.6) return base * 0.5;
+    return base;
+  }
+
+  class Shape {
+    constructor(x, y, size, type, pattern) {
+      this.x = x;
+      this.y = y;
+      this.baseSize = size;
+      this.type = type;
+      this.pattern = pattern;
+      this.setDimensions();
+    }
+
+    setDimensions() {
+      const s = this.baseSize;
+      if (this.type === "square") {
+        this.w = s;
+        this.h = s;
+      } else if (this.type === "rect") {
+        const wide = Math.random() < 0.5;
+        this.w = wide ? s * 1.8 : s;
+        this.h = wide ? s : s * 1.8;
+      } else {
+        this.w = s;
+        this.h = s * 1.4;
+      }
+    }
+
+    draw(ctx) {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+
+      if (this.pattern === "accentFill") {
+        ctx.fillStyle = ACCENT;
+        ctx.strokeStyle = ACCENT;
+      } else if (this.pattern === "paperFill") {
+        ctx.fillStyle = PAPER;
+        ctx.strokeStyle = PAPER;
+      } else {
+        ctx.fillStyle = BG;
+        ctx.strokeStyle = PAPER;
+      }
+
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = 1;
+
+      if (this.type === "triangle") {
+        this.drawTriangle(ctx);
+      } else {
+        this.drawRectShape(ctx);
+      }
+
+      ctx.restore();
+    }
+
+    drawRectShape(ctx) {
+      const w = this.w;
+      const h = this.h;
+      const x = -w / 2;
+      const y = -h / 2;
+      if (this.pattern === "outline") {
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+      } else {
+        ctx.fillRect(x, y, w, h);
+      }
+    }
+
+    drawTriangle(ctx) {
+      const w = this.w;
+      const h = this.h;
+      ctx.beginPath();
+      ctx.moveTo(0, -h / 2);
+      ctx.lineTo(-w / 2, h / 2);
+      ctx.lineTo(w / 2, h / 2);
+      ctx.closePath();
+      if (this.pattern === "outline") {
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        ctx.fill();
+      }
+    }
+
+    containsPoint(px, py) {
+      const w = this.w;
+      const h = this.h;
+      const left = this.x - w / 2;
+      const right = this.x + w / 2;
+      const top = this.y - h / 2;
+      const bottom = this.y + h / 2;
+      return px >= left && px <= right && py >= top && py <= bottom;
+    }
+
+    morph() {
+      if (this.pattern === "outline") {
+        this.pattern = choice(["accentFill", "paperFill"]);
+      } else {
+        this.pattern = "outline";
+      }
+
+      if (Math.random() < 0.5) {
+        let newType = choice(ShapeType);
+        if (newType === this.type) {
+          newType = choice(ShapeType);
+        }
+        this.type = newType;
+        this.setDimensions();
+      }
+    }
+  }
+
+  function createShape(x, y) {
+    const type = choice(ShapeType);
+    const pattern = choice(Patterns);
+    const size = sizeVariant(60);
+    const s = new Shape(x, y, size, type, pattern);
+    shapes.push(s);
+  }
+
+  function seedInitialShapes() {
+    shapes.length = 0;
+    const count = randInt(40, 80);
+
+    for (let i = 0; i < count; i++) {
+      const bias = Math.random();
+      let x, y;
+
+      if (bias < 0.3) {
+        x = rand(40, canvas.width * 0.45);
+        y = rand(canvas.height * 0.55, canvas.height - 40);
+      } else {
+        x = rand(40, canvas.width - 40);
+        y = rand(40, canvas.height - 40);
+      }
+
+      createShape(x, y);
+    }
+  }
+
+  function drawBackground() {
+    ctx.fillStyle = BG;
+    ctx.globalAlpha = 1;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function loop() {
+    drawBackground();
+
+    for (let i = 0; i < shapes.length; i++) {
+      shapes[i].draw(ctx);
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    seedInitialShapes();
+  }
+
+  canvas.addEventListener("click", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    let clickedShape = null;
+    for (let i = shapes.length - 1; i >= 0; i--) {
+      if (shapes[i].containsPoint(x, y)) {
+        clickedShape = shapes[i];
+        break;
+      }
+    }
+
+    if (clickedShape) {
+      clickedShape.morph();
+    } else {
+      createShape(x, y);
+    }
+  });
+
+  window.addEventListener("resize", resizeCanvas);
+
+  resizeCanvas();
+  loop();
+</script>
+</body>
+</html>
