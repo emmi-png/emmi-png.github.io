@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portfolio – Emmi</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      html {
+        min-height: 100%;
+        background:
+          radial-gradient(1200px 900px at 70% 30%, rgba(255,255,255,0.06), transparent 55%),
+          radial-gradient(900px 700px at 10% 85%, rgba(255,255,255,0.05), transparent 60%),
+          var(--bg);
+        background-attachment: fixed;
+      }
+
+      body {
+        min-height: 100%;
+        margin: 0;
+        background: transparent;
+        color: var(--fg);
+        font-family: var(--font);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar" aria-label="Project index">
+        <div class="brand">EMMI</div>
+
+        <nav class="nav" id="projectNav">
+          <button class="nav-item" type="button" data-id="p1">
+            <span class="nav-idx">[1]</span><span class="nav-title">ASCII ART</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p2">
+            <span class="nav-idx">[2]</span><span class="nav-title">STILL LIFE</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p3">
+            <span class="nav-idx">[3]</span><span class="nav-title">ADVENTURE JOURNEY</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p4">
+            <span class="nav-idx">[4]</span><span class="nav-title">PLAYLIST ALBUMS</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p5">
+            <span class="nav-idx">[5]</span><span class="nav-title">CHINESE CLOCK</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p6">
+            <span class="nav-idx">[6]</span><span class="nav-title">ATS SIMULATOR</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p7">
+            <span class="nav-idx">[7]</span><span class="nav-title">PHILLY IN THE KNOW</span>
+          </button>
+          <button class="nav-item" type="button" data-id="p8">
+            <span class="nav-idx">[8]</span><span class="nav-title">SHAPE GENERATOR</span>
+          </button>
+
+          <!-- [9] opens text-only modal -->
+          <button class="nav-item" type="button" data-id="p9">
+            <span class="nav-idx">[9]</span><span class="nav-title">OTHER READINGS</span>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- GRID -->
+      <section class="stage" aria-label="Projects">
+        <div class="grid" id="projectGrid">
+          <article
+            class="card"
+            data-id="p1"
+            data-title="ASCII ART"
+            data-link="https://codepen.io/emmi-png/pen/WbQgMpx"
+            data-desc="This project was inspired by Eadweard Muybridge’s sequential photographs of horses, which captured motion frame-by-frame long before modern film. I wanted to translate that same sense of movement into a digital medium, using ASCII art as the visual language.
+
+Each frame is constructed entirely from ASCII characters, chosen not just to outline the form but to add texture, weight, and rhythm. When sequenced together, the characters create a low-fi animation that echoes Muybridge’s original exploration of motion—bridging historical visual study with contemporary digital drawing."
+          >
+            <div class="card-index">[1]</div>
+            <div class="thumb thumb--1" role="img" aria-label="ASCII Art thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p2"
+            data-title="STILL LIFE"
+            data-link="https://codepen.io/emmi-png/pen/dPYLNee"
+            data-desc="Rather than aiming for a perfect visual replica, this still life focuses on how objects relate to one another in space. Influenced by Russian Constructivism and De Stijl, I used abstraction to reinterpret the classroom setup, emphasizing structure, color, and composition to create a playful and modern response to a traditional still life exercise."
+          >
+            <div class="card-index">[2]</div>
+            <div class="thumb thumb--2" role="img" aria-label="Still Life thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p3"
+            data-title="A NIGHT PATH"
+            data-link="https://emmi-png.github.io/s1fp/"
+            data-desc="A choose-your-own-journey narrative with branching paths, multiple endings, and storybook-style illustrations that respond to each choice."
+          >
+            <div class="card-index">[3]</div>
+            <div class="thumb thumb--3" role="img" aria-label="Adventure Journey thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p4"
+            data-title="MY DISOGRAPHY"
+            data-link="https://emmi-png.github.io/s2a2/"
+            data-desc="This project grew out of redesigning my own Spotify covers and rediscovering my interest in graphic design. I used this discography as a way to highlight those explorations while experimenting with skeuomorphic interaction. Clicking a cover reveals a record player interface, where users can place the needle on the vinyl to play the album."
+          >
+            <div class="card-index">[4]</div>
+            <div class="thumb thumb--4" role="img" aria-label="Playlist Albums thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p5"
+            data-title="CHINESE CLOCK"
+            data-link="https://editor.p5js.org/emmi-png/full/67Tm8KybR"
+            data-desc="Inspired by the tonal precision of the Chinese language, this clock experiments with how subtle changes affect meaning. Each hour uses playful tonal variations of Chinese number words, paired with illustrations. As the second hand passes, the corresponding word jiggles, emphasizing the delicacy of both language and time."
+          >
+            <div class="card-index">[5]</div>
+            <div class="thumb thumb--5" role="img" aria-label="Chinese Clock thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p6"
+            data-title="ATS SIMULATOR"
+            data-link="https://job-application-kohl-eight.vercel.app/"
+            data-desc="Applying for jobs often feels like a game of trying to “beat” the ATS. This project flips that dynamic and asks: what if you are the ATS? By scanning resumes for keywords and signals, users step into the role of the system that filters applicants, revealing how subjective and reductive “best fit” can become when people are reduced to data points."
+          >
+            <div class="card-index">[6]</div>
+            <div class="thumb thumb--6" role="img" aria-label="ATS Simulator thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p7"
+            data-title="KEEP UP W PHILLY"
+            data-link="https://keep-up-w-philly.vercel.app/"
+            data-desc="An IFTTT automation that emails you top Reddit posts about Philly, paired with playful branding and custom illustrations inspired by local events. So you never miss an Eagles bar crawl again."
+          >
+            <div class="card-index">[7]</div>
+            <div class="thumb thumb--7" role="img" aria-label="Philly in the Know thumbnail"></div>
+          </article>
+
+          <article
+            class="card"
+            data-id="p8"
+            data-title="SHAPE GENERATOR"
+            data-link="https://emmi-png.github.io/s3fp/"
+            data-desc="A generative system that produces random compositions of orange, white, and outlined squares, triangles, and rectangles. Each output is a little bit silly, and a little bit messy."
+          >
+            <div class="card-index">[8]</div>
+            <div class="thumb thumb--8" role="img" aria-label="Shape Generator thumbnail"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- LIGHTBOX / MODAL -->
+    <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close="true"></div>
+
+      <div class="modal-panel" id="modalPanel" role="document" aria-label="Project details">
+        <button class="modal-close" type="button" aria-label="Close" data-close="true">✕</button>
+
+        <!-- image column (hidden for p9) -->
+        <div class="modal-image" id="modalImage" role="img" aria-label="Selected project image"></div>
+
+        <div class="modal-meta">
+          <div class="modal-title" id="modalTitle">PROJECT TITLE</div>
+
+          <a class="modal-link" id="modalLink" href="#" target="_blank" rel="noreferrer">
+            VIEW IT HERE <span aria-hidden="true">↗</span>
+          </a>
+
+          <!-- scroll container for long text -->
+          <div class="modal-scroll" id="modalScroll">
+            <p class="modal-desc" id="modalDesc">Description goes here.</p>
+
+            <!-- OTHER READINGS (text-only modal) -->
+            <div class="readings" id="readingsContent" hidden>
+              <h3 class="readings-h">Week 2 - Ulises Carrión - Mail Art and the Big Monster from Second Thoughts</h3>
+              <p class="readings-p">
+                I think Carrión makes a good point about how form and medium choices can impact the creative work itself. I think people often think art is confined to certain mediums, like paper or canvases. But what differentiates a digital screen from a napkin or a piece of cardboard?
+              </p>
+              <p class="readings-p">
+                I'm a bit lost when he talks about how Mail Art is not just simply sending postcards or decorated letters. I personally think anything and everything could be considered art. What makes the difference between a postcard and mail art? Is it the artist’s intention?
+              </p>
+
+              <h3 class="readings-h">
+                Week 3 - Laurel Schwulst & Édouard U - Selections from Creative Independent and Arena How Do You Use the Internet Mindfully
+              </h3>
+              <p class="readings-p">
+                The readings were interesting: I agree that the web has changed from a tool to a place we live in. When thinking about personal websites, as a designer, there is something very unique about creating a reflection of yourself for the web. It is something interesting about how we approach interaction, unlike businesses that try and reach more people through SEO, we try and reach other designers in a more personalized way (going viral on twitter). I'm currently reworking my portfolio, it really does feel like I'm crafting a piece of art. When I stumble upon a cool portfolio, it really feels like I've stumbled upon a secret part of the internet.
+              </p>
+              <p class="readings-p">
+                I also liked everything about the networks of ideas. I think browsing on Are.na feels refreshing compared to other aspects of the internet. Finding a good are.na block also really feels like I'm peeking into someone's mind. I especially love when creatives link their are.nas-- there is no other way to stumble upon knowledge like this on the internet.
+              </p>
+
+              <h3 class="readings-h">
+                Week 4 - Olia Lialina - STILL THERE Ruins and Templates of Geocities from Lost and Living (in) Archives
+              </h3>
+              <p class="readings-p">
+                I enjoyed reading about Lialina’s reflection on the rise and fall of Geocities, one of the first platforms where everyday people built personal websites. I googled some of the "amateur web" aesthetics, I found the GIFs, tiled backgrounds, “under construction” signs, and neighborhood communities pretty charming. I thought the "digital ruins" that Lialina mentioned were interesting. I'd never thought of how much information / personal work would have been lost after Yahoo shut down. (If I lost my portfolio on the web I would crash out)
+              </p>
+              <p class="readings-p">
+                I think it was interesting how the archive of Geocities allows us to see the web not as eternally new, but as something that ages, decays, and leaves behind cultural traces. I'm currently taking an architecture class and I found a lot of connections between Geocities and archival work. It raises the question about who controls digital memory, and what happens when platforms decide entire histories aren’t worth preserving.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                How does the concept of “digital ruins” change the way we think about preservation?<br />
+                What have we lost since personal expression has moved from homemade websites to social media profiles? (rip Tumblr)
+              </p>
+
+              <h3 class="readings-h">Week 5 - Alessandro Ludovico & Florian Cramer - Selections from Publishing from Post-Digital-Print</h3>
+              <p class="readings-p">
+                I really liked how Ludovico describes print and digital as not opposites, but two mediums that keep feeding into each other. It reminded me of a lot of mixed media work I’ve seen on Instagram. Like artists who take digital alterations and then bring them to the physical world to create art, creating this seamless blend of digital craft and handmade texture. That feels very “post-digital” to me: the final work isn’t about one best medium, but about how they can co-exist and make something new. It makes me wonder if publishing will follow the same path, where the most interesting projects are hybrids instead of purely print or purely digital.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. What are some ex. of print-digital projects you’ve seen?<br />
+                2. What do you think that could inspire?
+              </p>
+
+              <h3 class="readings-h">Week 7 - Bojana Coklyat & Shannon Finnegan - Selections from Alt-Text as Poetry Workbook</h3>
+              <p class="readings-p">
+                I thought it was pretty interesting how Alt-Text as Poetry talks about giving artists credit for their alt-text descriptions. I think alt-text is an important accessibility feature, but I think describing your own work is pretty artistic. I think as a designer, I used to overlook storytelling but I've realized over the past few months how important storytelling is when telling a narrative and getting others to buy into your work. I think it's really cool that projects like Cosmos actually find the OG artist and will write a description. With Cosmos, I feel it's more of an accessibility tool but it's still very cool the internet is more accessible and more creatives get their work credited for.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. Do you think artists should get credit for writing their own alt-text?<br />
+                2. Is it better for alt-text to sound neutral, or do you like when it feels more personal or poetic?
+              </p>
+
+              <h3 class="readings-h">Week 8 - Ramsey Nasser - "A Personal Computer for Children of All Cultures" from Decolonising the Digital</h3>
+              <p class="readings-p">
+                This week's reading was interesting because it actually reminded me of my parents. They learned their first words of English in China while learning to program. Of course in the reading it touched upon the linguistic and cultural biases and assumptions built into all of our tools, but for my parents they actually remember learning English and then connecting it back to their programming lessons later in life. (Which I think in a way is kinda cool).
+              </p>
+              <p class="readings-p">
+                I don't think introducing other isolated languages, like Qalb or a Mandarin programming language, would necessarily solve anything. I almost wish there was a way to translate code to make it easier to understand and write in a bunch of different languages. I have no technical understanding of how that would work though-- but I can imagine there are a bunch of trickle down effects of having programming only be in English.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. how would you approach decolonizing code?<br />
+                2. is it even possible to decolonize code? maybe just bridge the linguistic gap?
+              </p>
+
+              <h3 class="readings-h">Week 9 - David Reinfurt - Selections from A <em>New</em> Program for Graphic Design</h3>
+              <p class="readings-p">
+                We learned about Gestalt theory in psychology, and it’s pretty interesting how there’s a biological basis for why we’re able to differentiate between visual elements. Our brains are wired to seek order and patterns: automatically grouping shapes, colors, and lines into coherent forms. As designers, it’s important to understand these principles in order to create powerful, intentional compositions that align with how people naturally perceive the world.
+              </p>
+              <p class="readings-p">
+                I also think it’s cool how Bauhaus principles still influence modern design education and practice today. On a more philosophical level, I believe this reading underscores how perception itself is almost a construct, and design plays a major role in shaping how we see and interpret the world around us.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. How might we use these principles to shape digital spaces?<br />
+                2. OR even physical?
+              </p>
+
+              <h3 class="readings-h">Week 10 - Ben Duvall - Selections from New Modernism(s)</h3>
+              <p class="readings-p">
+                I think it’s interesting to consider why modernism emerged as a style in the first place. The architectural roots are especially rich: figures like Adolf Loos, Walter Gropius, and the Bauhaus designers pioneered modernism as both a reflection of their time and a rejection of what came before. It was a response to the ornate craftsmanship of the Arts and Crafts movement and to the economic realities that made handcrafted goods inaccessible. In that sense, modernism wasn’t just an aesthetic choice; it was about efficiency, standardization, and accessibility.
+              </p>
+              <p class="readings-p">
+                Design today feels similar, not in terms of reducing cost, but in prioritizing function -- whether that is clarity, usability, accessibility, or intuitive heuristics. What interests me about hyper-modernism is that while it appears chaotic, it still relies on the same fundamental principles of design. Even the Mickey Mouse pieces Duvall mentions work because they follow compositional logic, hierarchy, contrast, rhythm, despite their complexity or edgy-ness.
+              </p>
+              <p class="readings-p">
+                This makes me wonder:<br />
+                do these new styles... hyper-modernism or whatever comes next... emerge primarily as a response to art and theory, or are they shaped more by consumerism and the market?<br />
+                how has the internet changed the pace and evolution of design eras? does it blur the boundaries between movements, causing them to overlap and evolve faster than before?
+              </p>
+
+              <h3 class="readings-h">
+                Questions for Week 12 - Dot Tuer - Beyond the New Media Frame The Poetics of Absence in Vera Frenkel’s String Games
+              </h3>
+              <p class="readings-p">
+                Tuer’s piece looks at how Vera Frenkel used early video tech to explore connection--basically how being “virtually present” can also mean being absent. I think it’s really interesting how physical artworks start to bleed into the digital world; the internet isn’t just a place to show art, it's a medium itself. I saw a TikTok that said “brainrot” is like a digital form of Dadaism. Kind of because it is just this chaotic, random reaction to overstimulation, and that resonated with me. A lot of the works in this piece feel kind of meta in that same way, like they’re aware of their own medium and the weirdness of existing through it.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. If Frenkel were making string games today, how do you think ai would change the meaning of “connection” in her work?<br />
+                2. Tuer talks a lot about absence/ loss in digital spaces, do you think the internet actually preserves memory, or just buries it under more noise?
+              </p>
+
+              <h3 class="readings-h">Week 13 - Paul Soulellis - Performing the Feed</h3>
+              <p class="readings-p">
+                I found it really interesting how he talked about how publishing changed from a controlled, material act into something that is really fluid and endlessly circulating. In some ways the old model was very slow, intentional, and exclusive; now it is a space where anyone with a device can broadcast themselves instantly. To me, that shift feels both empowering and risky. It's almost like a double-sided coin. On one hand, digital networks can democratize anyone who has something to say, giving visibility to people who might not have had access to traditional publishing channels. When I scroll on Instagram, I see a lot of my peers sharing resources and posts about issues that concern them. I think, compared to the past, it definitely makes digital activism more accessible.
+              </p>
+              <p class="readings-p">
+                However, I think the same system also creates perfect conditions for misinformation to spread, is pretty interesting when we think about the current political state. In a political climate where figures like Trump really blur the line between truth and fabrication, that ambiguity becomes a strategic and powerful weapon. The amount of people who disregard information under the claim that it's “fake news” is ... I think a lot of the reading touched on how future technology might make us interact with media that is so detached from reality, like deepfakes, but when we consider today’s political climate, that could be really dangerous because of how we're already using it to push ideology and beliefs.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. Do you, personally, feel like it's hard to differentiate truth from noise especially in the way our social media is organized today?<br />
+                2. In what ways have we seen tech companies (meta, twitter ☠️, tiktok) take action against/for deceptive narratives and do you think they work?
+              </p>
+
+              <h3 class="readings-h">Week 14 - Boris Groys - Art on the Internet</h3>
+              <p class="readings-p">
+                I thought the point about how, with the internet, anyone can publish anything was interesting. Because of this, institutions like museums and publishing houses can no longer decide what gets published. To me, it almost feels like everything becomes art in today's age. Especially in my generation, everything we put online feels like a performance; we’re acutely aware that we’re being watched and that all our posts leave a trace. I also think this is why platforms like Reddit /Sidechat thrive: anonymity gives people a break from that constant visibility. It’s similar to the two-sided coin I talked about in the last post... while barriers are being torn down and publishing feels more accessible, it’s also harmful because the sheer amount of content has changed how we interact with each other and with the internet itself.
+              </p>
+              <p class="readings-p">
+                <strong>Qs:</strong><br />
+                1. Do you think the internet has democratizes art, or has it made meaningful work harder to find?<br />
+                2. As a creative, are there any ways we can still keep expressing ourselves without worrying about performance?
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const nav = document.getElementById("projectNav");
+      const grid = document.getElementById("projectGrid");
+      const modal = document.getElementById("modal");
+
+      const modalTitle = document.getElementById("modalTitle");
+      const modalLink = document.getElementById("modalLink");
+      const modalDesc = document.getElementById("modalDesc");
+      const modalImage = document.getElementById("modalImage");
+
+      const readingsContent = document.getElementById("readingsContent");
+
+      const cards = [...document.querySelectorAll(".card")];
+      const navItems = [...document.querySelectorAll(".nav-item")];
+
+      function setHoverState(on) {
+        document.documentElement.classList.toggle("is-hovering", on);
+      }
+
+      function setActive(id) {
+        document.documentElement.dataset.active = id || "";
+        cards.forEach((c) => c.classList.toggle("is-active", c.dataset.id === id));
+        navItems.forEach((n) => n.classList.toggle("is-active", n.dataset.id === id));
+      }
+
+      function clearActive() {
+        delete document.documentElement.dataset.active;
+        cards.forEach((c) => c.classList.remove("is-active"));
+        navItems.forEach((n) => n.classList.remove("is-active"));
+      }
+
+      function openModalFromCard(card) {
+        // normal project modal (image + link + short description)
+        readingsContent.hidden = true;
+        modalImage.style.display = "";
+        modalLink.style.display = "";
+        modalDesc.style.display = "";
+
+        const title = card.dataset.title || "PROJECT";
+        const link = card.dataset.link || "#";
+        const desc = card.dataset.desc || "";
+
+        modalTitle.textContent = title;
+        modalLink.href = link;
+        modalDesc.textContent = desc;
+
+        const thumb = card.querySelector(".thumb");
+        modalImage.className = "modal-image " + (thumb?.className || "");
+
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+      }
+
+      function openReadingsModal() {
+        // text-only modal (no image, no external link)
+        modalTitle.textContent = "OTHER READINGS";
+        readingsContent.hidden = false;
+
+        modalImage.style.display = "none";
+        modalLink.style.display = "none";
+        modalDesc.style.display = "none";
+
+        // prevent any previous bg image class flash
+        modalImage.className = "modal-image";
+
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+      }
+
+      function attachHover(el, getId) {
+        el.addEventListener("mouseenter", () => {
+          setHoverState(true);
+          setActive(getId());
+        });
+
+        el.addEventListener("mouseleave", () => {
+          setHoverState(false);
+          clearActive();
+        });
+      }
+
+      cards.forEach((card) => attachHover(card, () => card.dataset.id));
+      navItems.forEach((item) => attachHover(item, () => item.dataset.id));
+
+      // Sidebar click: scroll to card if it exists, p9 opens modal
+      nav.addEventListener("click", (e) => {
+        const btn = e.target.closest(".nav-item");
+        if (!btn) return;
+
+        const id = btn.dataset.id;
+
+        if (id === "p9") {
+          openReadingsModal();
+          return;
+        }
+
+        const target = document.querySelector(`.card[data-id="${id}"]`);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      // Card click: open modal
+      grid.addEventListener("click", (e) => {
+        const card = e.target.closest(".card");
+        if (!card) return;
+        openModalFromCard(card);
+      });
+
+      // Close modal (X or backdrop)
+      modal.addEventListener("click", (e) => {
+        const close = e.target.closest("[data-close='true']");
+        if (close) closeModal();
+      });
+
+      // ESC to close
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
+      });
+    </script>
+  </body>
+</html>

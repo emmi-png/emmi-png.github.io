@@ -1,0 +1,348 @@
+@font-face {
+  font-family: "GT Pressura Mono";
+  src: url("fonts/GT-Pressura-Mono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GT Pressura Mono";
+  src: url("fonts/GT-Pressura-Mono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GT Pressura Mono";
+  src: url("fonts/GT-Pressura-Mono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* enforce it everywhere */
+html, body, button, a, p, div, span {
+  font-family: "GT Pressura Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+:root {
+  --bg: #121214;
+  --fg: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.55);
+  --stroke: rgba(255, 255, 255, 0.08);
+
+  --dim: 0.3;
+  --blur: 8px;
+
+  /* subtle rounding requested */
+  --r: 4px;
+
+  --font: "GT Pressura Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 900px at 70% 30%, rgba(255,255,255,0.06), transparent 55%),
+    radial-gradient(900px 700px at 10% 85%, rgba(255,255,255,0.05), transparent 60%),
+    var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  letter-spacing: 0.02em;
+}
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  padding: 42px 42px 42px;
+}
+
+.sidebar {
+  padding-top: 6px;
+  position: sticky;
+  top: 28px;
+  height: calc(100vh - 56px);
+  align-self: start;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  margin-bottom: 18px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-item {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 8px 8px;
+  text-align: left;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: opacity 160ms ease, color 160ms ease, background 160ms ease;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.nav-item:hover {
+  color: var(--fg);
+  background: rgba(255,255,255,0.04);
+}
+
+.nav-item--index-only {
+  cursor: default;
+}
+
+.nav-idx { color: rgba(255,255,255,0.40); }
+.nav-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Stage fills height so 8 thumbs can fill viewport */
+.stage {
+  padding-top: 34px;
+  overflow: visible;
+}
+
+/* Responsive grid: 4 → 3 → 2 → 1 automatically */
+.grid {
+  display: grid;
+  gap: 28px;
+
+  /* This is the magic */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: start;
+}
+
+/* Cards should not force height anymore */
+.card {
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  transition: transform 180ms ease, opacity 180ms ease, filter 180ms ease;
+  user-select: none;
+}
+
+.card:nth-child(2n) { transform: rotate(1.5deg); }
+.card:nth-child(3n) { transform: rotate(-1deg); }
+.card:hover { transform: rotate(0deg) translateY(-4px); }
+
+/* Keep a consistent thumbnail ratio (adjust if you want) */
+.thumb {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* or 4/3 if you prefer the old look */
+  border-radius: var(--r);
+  border: 1px solid var(--stroke);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+  overflow: hidden;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* filler thumbs */
+.thumb--1 { background: url("images/p1.png") center / cover no-repeat; }
+.thumb--2 { background: url("images/p2.png") center / cover no-repeat; }
+.thumb--3 { background: url("images/p3.png") center / cover no-repeat; }
+.thumb--4 { background: url("images/p4.png") center / cover no-repeat; }
+.thumb--5 { background: url("images/p5.png") center / cover no-repeat; }
+.thumb--6 { background: url("images/p6.png") center / cover no-repeat; }
+.thumb--7 { background: url("images/p7.png") center / cover no-repeat; }
+.thumb--8 { background: url("images/p8.png") center / cover no-repeat; }
+
+
+/* Hover behavior: dims + blur all except active */
+html.is-hovering .card,
+html.is-hovering .nav-item {
+  opacity: var(--dim);
+}
+
+html.is-hovering .card {
+  filter: blur(var(--blur));
+}
+
+html.is-hovering .card.is-active,
+html.is-hovering .nav-item.is-active {
+  opacity: 1;
+}
+
+html.is-hovering .card.is-active {
+  filter: none;
+}
+
+/* Active index styling */
+.nav-item.is-active {
+  color: var(--fg);
+  background: rgba(255,255,255,0.05);
+}
+.nav-item.is-active .nav-idx { color: rgba(255,255,255,0.75); }
+
+/* Modal */
+body.modal-open { overflow: hidden; }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.modal[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.62);
+  backdrop-filter: blur(10px);
+}
+
+.modal-panel {
+  position: relative;
+  width: min(980px, calc(100vw - 52px));
+  border-radius: var(--r);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(18,18,20,0.86);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: auto 1fr; /* image column sizes itself */
+  gap: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--fg);
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease;
+}
+.modal-close:hover { transform: scale(1.05); background: rgba(255,255,255,0.10); }
+
+.modal-image {
+  --w: 2;
+  --h: 3;
+
+  height: min(70vh, 520px); /* controls overall size */
+  width: calc((min(70vh, 520px)) * (var(--w) / var(--h)));
+  max-width: 42vw;          /* keep room for text column */
+  border-right: 1px solid rgba(255,255,255,0.08);
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal-meta {
+  padding: 28px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-title {
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modal-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 10px 12px;
+  width: fit-content;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  transition: transform 140ms ease, background 140ms ease;
+}
+.modal-link:hover { transform: translateY(-1px); background: rgba(255,255,255,0.08); }
+
+.modal-desc {
+  margin: 6px 0 0;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+/* make modal content scrollable */
+.modal-scroll {
+  max-height: 58vh;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* nicer scrollbar (optional) */
+.modal-scroll::-webkit-scrollbar { width: 10px; }
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.14);
+  border-radius: 999px;
+}
+.modal-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* readings typography */
+.readings-h {
+  margin: 18px 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+}
+.readings-p {
+  margin: 0 0 12px;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.65;
+  font-size: 13px;
+}
+
+
+/* Responsive */
+@media (max-width: 980px) {
+  .shell { grid-template-columns: 220px 1fr; padding: 32px 22px 40px;  min-height: 100vh;}
+  .stage { height: auto; }
+  .grid { height: auto; grid-template-columns: repeat(2, minmax(180px, 1fr)); grid-template-rows: auto; }
+  .card { height: 220px; }
+}
+
+@media (max-width: 720px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; top: 0; }
+  .grid { grid-template-columns: 1fr; }
+  .card { height: 240px; }
+  .modal-panel { grid-template-columns: 1fr; }
+  .modal-image { min-height: 260px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+}
